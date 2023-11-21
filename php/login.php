@@ -2,6 +2,24 @@
 
 include_once("dbconn.php");
 
+$username = $_POST["USERNAME"];
+$pswd = $_POST["PASSWORD"];
+$password = password_hash($pswd, PASSWORD_DEFAULT);
+$gmail = $_POST["GMAIL"];
+
+$select = "SELECT * FROM `accounts` WHERE `user_username`='$username' AND `user_gmail` = '$gmail' ";
+if (isset($_POST["REGISTER-BTN"])) {
+    $result = mysqli_query($conn, $select);
+    if (mysqli_num_rows($result) > 0) {
+        echo "Account is Already Registered";
+    } else {
+        mysqli_query($conn, "INSERT INTO accounts (user_username, user_gmail, user_password) VALUES  ('$username', '$gmail', '$password')");
+        header("location: login.php");
+    }
+}
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -26,16 +44,16 @@ include_once("dbconn.php");
                     Register
                 </button>
             </div>
-            <form id="login" action="index.php" method="post" class="input-group">
-                <input type="text" class="input-field" placeholder="Username" required />
-                <input type="text" class="input-field" placeholder="Password" required />
-                <button type="submit" class="submit-btn">Log In</button>
+            <form id="login" action="login.php" method="post" class="input-group">
+                <input type="text" class="input-field" placeholder="Username" required name="USERNAME" />
+                <input type="password" class="input-field" placeholder="Password" required name="PASSWORD" />
+                <button type="submit" class="submit-btn" name="LOGIN-BTN">Log In</button>
             </form>
-            <form id="register" action="index.php" method="post" class="input-group">
-                <input type="text" class="input-field" placeholder="Username" required />
-                <input type="text" class="input-field" placeholder="Gmail" required />
-                <input type="text" class="input-field" placeholder="Password" required />
-                <button type="submit" class="submit-btn">Register</button>
+            <form id="register" action="login.php" method="post" class="input-group">
+                <input type="text" class="input-field" placeholder="Username" required name="USERNAME" />
+                <input type="text" class="input-field" placeholder="Gmail" required name="GMAIL" />
+                <input type="password" class="input-field" placeholder="Password" required name="PASSWORD" />
+                <button type="submit" class="submit-btn" name="REGISTER-BTN">Register</button>
             </form>
         </div>
     </div>
