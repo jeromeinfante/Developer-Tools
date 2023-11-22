@@ -33,9 +33,15 @@ if (isset($_POST["REGISTER-BTN"])) {
     }
 }
 
+$resultshaha = mysqli_fetch_assoc($select);
+
+
 if (isset($_POST["LOGIN-BTN"])) {
+    $user = mysqli_fetch_assoc($result);
     $results = mysqli_query($conn, "SELECT * FROM `accounts` WHERE `user_username`='$username' AND `user_password` = '$password'");
     if (mysqli_num_rows($results) > 0) {
+        session_start();
+        $_SESSION["user_id"] = $user["id"];
         header("location: home.php");
         exit;
     } else {
