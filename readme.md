@@ -9,7 +9,7 @@ A guide for the installation of the IDE, environment, tools,  etc.
 ```bash
 cd Downloads
 
-sudo wget https://sourceforge.net/projects/xampp/files/XAMPP%20Linux/8.2.12/xampp-linux-x64-8.2.12-0-installer.run/download
+sudo wget https://sourceforge.net/projects/xampp/files/XAMPP%20Linux/8.2.12/xampp-linux-x64-8.2.12-0-installer.run
   
 chmod +x xampp-linux-x64-8.2.12-0-installer.run
 
