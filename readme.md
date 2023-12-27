@@ -19,6 +19,8 @@ sudo systemctl disable apache2
 
 sudo systemctl stop apache2
 
+sudo chmod -R 777 /opt/lampp/htdocs
+
 sudo /opt/lampp/lampp start
 
 sudo /opt/lampp/lampp stop
